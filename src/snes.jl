@@ -158,3 +158,5 @@ end
 end
 
 solve!(x::AbstractVector{T}, snes::SNES{T}) where {T} = parent(solve!(AbstractVec(x), snes))
+
+Base.show(io::IO, snes::SNES) = _show(io, snes)
