@@ -11,13 +11,14 @@ function getlibs()
     return libs
 end
 const libs = @static if !haskey(ENV, "JULIA_PETSC_LIBRARY")
+    print("Hmmm cest pas bon ca")
     using PETSc_jll
     (
-     #(PETSc_jll.libpetsc,),
-     (PETSc_jll.libpetsc_Float64_Real_Int64,),
-     (PETSc_jll.libpetsc_Float32_Real_Int64,),
-     (PETSc_jll.libpetsc_Float64_Complex_Int64,),
-     (PETSc_jll.libpetsc_Float32_Complex_Int64,),
+     (PETSc_jll.libpetsc,),
+     #(PETSc_jll.libpetsc_Float64_Real_Int64,),
+     #(PETSc_jll.libpetsc_Float32_Real_Int64,),
+     #(PETSc_jll.libpetsc_Float64_Complex_Int64,),
+     #(PETSc_jll.libpetsc_Float32_Complex_Int64,),
      # XXX: The following cannot be used until all types are based on PetscLib
      #      instead of PetscScalar
      # (PETSc_jll.libpetsc_Float64_Real_Int32,),
@@ -26,6 +27,7 @@ const libs = @static if !haskey(ENV, "JULIA_PETSC_LIBRARY")
      # (PETSc_jll.libpetsc_Float32_Complex_Int32,),
     )
 else
+    print("Mais... Mais ca devrait marcher")
     getlibs()
 end
 function DataTypeFromString(libhdl::Ptr{Cvoid}, name::AbstractString)
